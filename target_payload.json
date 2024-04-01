@@ -1,0 +1,9 @@
+{
+  "author": BUILD_USER_EMAIL
+  "branch": GIT_BRANCH
+  "hash": GIT_COMMIT
+  "tag": ??
+  "pull_request": ??
+  "url": GIT_URL=https://github.com/redsfyre/jenkins-test.git
+  "published": ??
+}

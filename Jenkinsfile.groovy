@@ -1,7 +1,11 @@
 pipeline {
     agent any
-    
-    parameters {
+
+    triggers {
+        githubPullRequests events: [Open(), close()], skipFirstRun: true, spec: '', triggerMode: 'HEAVY_HOOKS'
+    }
+
+//    parameters {
         // Parameter that allows us to choose which branch to build
 //        gitParameter(branch: '',
 //                //branchFilter: 'origin/(release.*)',              // Jenkins will detect and list only release/* branches
@@ -17,12 +21,20 @@ pipeline {
 //                type: 'PT_BRANCH',                                 // Jenkins will search and detect "branches". It can be search for tags
 //                useRepository: 'https://github.com/redsfyre/jenkins-test.git'
 //        )
-          gitParameter name: 'PULL_REQUESTS',
-                     type: 'PT_PULL_REQUEST',
-                     defaultValue: '1',
-                     sortMode: 'DESCENDING_SMART'
-                     useRepository: 'https://github.com/redsfyre/jenkins-test.git'
-    }
+
+//          gitParameter
+//            branch: '',
+//            branchFilter: '.*',
+//            defaultValue: '1',
+//            description: 'git_pr_builder',
+//            name: 'git_pr',
+//            quickFilterEnabled: true,
+//            selectedValue: 'TOP',
+//            sortMode: 'DESCENDING_SMART',
+//            tagFilter: '*',
+//            type: 'PT_PULL_REQUEST',
+//            useRepository: 'git@github.com:redsfyre/jenkins-test.git'
+//    }
  
     stages {
         stage ('SCM') {
@@ -31,9 +43,9 @@ pipeline {
                 checkout poll: true, scm: [
                     $class: 'GitSCM',
                     // only build release/* branches
-                    branches: [[name: '$github_branch']],
+                    branches: [[name: '**']],
                     extensions: [],
-                    userRemoteConfigs: [[credentialsId: '', url: 'https://github.com/redsfyre/jenkins-test.git']]]
+                    userRemoteConfigs: [[name: 'origin', refspec: '+refs/pull/${ghprbPullId}/*:refs/remotes/origin/pr/${ghprbPullId}/*', credentialsId: '', url: 'https://github.com/redsfyre/jenkins-test.git']]]
             }
         }
 

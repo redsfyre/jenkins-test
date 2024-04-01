@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     triggers {
-        GenericTrigger causeString: 'Generic Cause', regexpFilterExpression: '', regexpFilterText: '', token: 'abc123', tokenCredentialId: ''
+        GenericTrigger token: 'abc123'
     }
 
 //    parameters {

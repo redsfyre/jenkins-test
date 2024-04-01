@@ -1,8 +1,12 @@
 pipeline {
     agent any
 
+    parameters {
+        stringParam('VARIABLE_FROM_POST', '')
+    }
+    
     triggers {
-        GenericTrigger token: 'abc123'
+        genericTrigger {token:'abc123'}
     }
 
 //    parameters {

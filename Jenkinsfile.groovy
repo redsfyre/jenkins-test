@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     triggers {
-        githubPullRequests events: [Open(), close()], skipFirstRun: true, spec: '', triggerMode: 'HEAVY_HOOKS'
+        GenericTrigger causeString: 'Generic Cause', regexpFilterExpression: '', regexpFilterText: '', token: 'abc123', tokenCredentialId: ''
     }
 
 //    parameters {
@@ -45,7 +45,7 @@ pipeline {
                     // only build release/* branches
                     branches: [[name: '**']],
                     extensions: [],
-                    userRemoteConfigs: [[name: 'origin', refspec: '+refs/pull/${ghprbPullId}/*:refs/remotes/origin/pr/${ghprbPullId}/*', credentialsId: '', url: 'https://github.com/redsfyre/jenkins-test.git']]]
+                    userRemoteConfigs: [[credentialsId: '', url: 'https://github.com/redsfyre/jenkins-test.git']]]
             }
         }
 

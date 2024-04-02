@@ -97,15 +97,15 @@ pipeline {
                     '''
                     def GIT_TAG = env.GIT_TAG ?: 'null'
                     def PAYLOAD = """
-                    {
-                        "author":"$PR_OPENER",
-                        "branch":"$GIT_BRANCH",
-                        "hash":"$GIT_COMMIT",
-                        "tag":"$GIT_TAG",
-                        "pull_request":"$PR_ID",
-                        "url":"$GIT_URL",
-                        "published":"$DEPLOYED"
-                    }
+{
+    "author":"$PR_OPENER",
+    "branch":"$GIT_BRANCH",
+    "hash":"$GIT_COMMIT",
+    "tag":"$GIT_TAG",
+    "pull_request":"$PR_ID",
+    "url":"$GIT_URL",
+    "published":"$DEPLOYED"
+}
                     """
                     echo "PAYLOAD: $PAYLOAD"
                     //sh "cat payload.json"

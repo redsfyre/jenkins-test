@@ -107,7 +107,8 @@ pipeline {
                         "published": "$DEPLOYED"
                     }
                     """
-                    sh "echo $PAYLOAD"
+                    sh "echo $PAYLOAD > payload.json"
+                    sh "cat payload.json"
                 }
             }
         }

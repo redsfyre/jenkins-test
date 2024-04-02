@@ -1,14 +1,35 @@
 pipeline {
     agent any
 
-    parameters {
-        stringParam('VARIABLE_FROM_POST', '')
-    }
-    
     triggers {
-        genericTrigger {token:'abc123'}
+        GenericTrigger(
+            genericVariables: [
+                [key: 'PR_ACTION', value: '$.action'],
+                [key: 'PR_OPENER', value: '$.pull_request.user.login'],
+                [key: 'PR_ID', value: '$.pull_request.number'],
+                [key: 'PR_TITLE', value: '$.pull_request.title'],
+                [key: 'PR_BODY', value: '$.pull_request.body'],
+                [key: 'PR_MERGE_COMMIT_SHA', value: '$.pull_request.merge_commit_sha'],
+                [key: 'PR_FROM_SHA', value: '$.pull_request.base.sha'],
+                [key: 'PR_FROM_REF', value: '$.pull_request.base.ref'],
+                [key: 'PR_TO_SHA', value: '$.pull_request.head.sha'],
+                [key: 'PR_TO_REF', value: '$.pull_request.head.ref'],
+            ],
+            causeString: '#$PR_ID $PR_ACTION by $PR_OPENER',
+            token: 'abc123',
+            tokenCredentialId: '',
+            printContributedVariables: true,
+            printPostContent: true,
+            silentResponse: false,
+            shouldNotFlatten: false,
+            regexpFilterText: '',
+            regexpFilterExpression: ''
+        )
     }
 
+    parameters {
+        string(name: 'DEPLOYED', defaultValue: 'true', description: 'Do you want to deploy?')
+    }
 //    parameters {
         // Parameter that allows us to choose which branch to build
 //        gitParameter(branch: '',
@@ -56,7 +77,23 @@ pipeline {
         stage('env-vars') {
             steps {
                 script {
-                    sh "printenv"
+                    sh '''
+                        echo Variables from shell:
+                        echo PR_ACTION = $PR_ACTION
+                        echo PR_OPENER = $PR_OPENER
+                        echo PR_ID = $PR_ID
+                        echo PR_TITLE = $PR_TITLE
+                        echo PR_BODY = $PR_BODY
+                        echo PR_MERGE_COMMIT_SHA = $PR_MERGE_COMMIT_SHA
+                        echo PR_FROM_SHA = $PR_FROM_SHA
+                        echo PR_FROM_REF = $PR_FROM_REF
+                        echo PR_TO_SHA = $PR_TO_SHA
+                        echo PR_TO_REF = $PR_TO_REF
+                        echo BUILD_USER_EMAIL = $BUILD_USER_EMAIL
+                        echo GIT_BRANCH = $GIT_BRANCH
+                        echo DEPLOYED = $DEPLOYED
+                        #printenv
+                    '''
                 }
             }
         }

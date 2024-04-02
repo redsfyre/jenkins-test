@@ -31,23 +31,6 @@ pipeline {
             regexpFilterExpression: '^(?!branch$)'
         )
 
-        //GenericTrigger(
-        //    genericVariables: [
-        //        [key: 'TAG_NAME', value: '$.ref'],
-        //        [key: 'TAG_CREATOR', value: '$.sender.login'],
-        //        [key: 'TAG_BRANCH', value: '$.master_branch']
-        //        [key: 'REPO_URL', value: '$.repository.clone_url'],
-        //    ],
-        //    causeString: '$TAG_NAME created by $TAG_CREATOR',
-        //    token: 'abc321',
-        //    tokenCredentialId: '',
-        //    printContributedVariables: true,
-        //    printPostContent: false,
-        //    silentResponse: false,
-        //    shouldNotFlatten: false,
-        //    regexpFilterText: '',
-        //    regexpFilterExpression: ''
-        //)
     }
 
     parameters {
@@ -104,7 +87,7 @@ pipeline {
                         echo Variables from shell:
                         printenv
                     '''
-                    def RELEASE_CREATOR = env.PR_OPENER ?: env.TAG_CREATOR
+                    def RELEASE_CREATOR = env.PR_OPENER ?: env.TAG_CREATOR ?: env.BUILD_USER_EMAIL ?: ''
                     def GIT_BRANCH = env.GIT_BRANCH ?: env.TAG_BRANCH
                     def COMMIT_SHA = env.PR_MERGE_COMMIT_SHA ?: env.GIT_COMMIT ?: ''
                     def GIT_TAG = env.TAG_NAME ?: ''

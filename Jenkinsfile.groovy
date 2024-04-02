@@ -96,7 +96,7 @@ pipeline {
                     '''
                     def PAYLOAD = """
                     {
-                        "author": "$BUILD_USER_EMAIL",
+                        "author": "$PR_OPENER",
                         "branch": "$GIT_BRANCH",
                         "hash": "$GIT_COMMIT",
                         "tag": "$GIT_TAG",

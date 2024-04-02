@@ -79,21 +79,33 @@ pipeline {
                 script {
                     sh '''
                         echo Variables from shell:
-                        echo PR_ACTION = $PR_ACTION
-                        echo PR_OPENER = $PR_OPENER
-                        echo PR_ID = $PR_ID
-                        echo PR_TITLE = $PR_TITLE
-                        echo PR_BODY = $PR_BODY
-                        echo PR_MERGE_COMMIT_SHA = $PR_MERGE_COMMIT_SHA
-                        echo PR_FROM_SHA = $PR_FROM_SHA
-                        echo PR_FROM_REF = $PR_FROM_REF
-                        echo PR_TO_SHA = $PR_TO_SHA
-                        echo PR_TO_REF = $PR_TO_REF
-                        echo BUILD_USER_EMAIL = $BUILD_USER_EMAIL
-                        echo GIT_BRANCH = $GIT_BRANCH
-                        echo DEPLOYED = $DEPLOYED
-                        #printenv
+                        #echo PR_ACTION = $PR_ACTION
+                        #echo PR_OPENER = $PR_OPENER
+                        #echo PR_ID = $PR_ID
+                        #echo PR_TITLE = $PR_TITLE
+                        #echo PR_BODY = $PR_BODY
+                        #echo PR_MERGE_COMMIT_SHA = $PR_MERGE_COMMIT_SHA
+                        #echo PR_FROM_SHA = $PR_FROM_SHA
+                        #echo PR_FROM_REF = $PR_FROM_REF
+                        #echo PR_TO_SHA = $PR_TO_SHA
+                        #echo PR_TO_REF = $PR_TO_REF
+                        #echo BUILD_USER_EMAIL = $BUILD_USER_EMAIL
+                        #echo GIT_BRANCH = $GIT_BRANCH
+                        #echo DEPLOYED = $DEPLOYED
+                        printenv
                     '''
+                    def PAYLOAD = """
+                    {
+                        "author": "$BUILD_USER_EMAIL",
+                        "branch": "$GIT_BRANCH",
+                        "hash": "$GIT_COMMIT",
+                        "tag": "$GIT_TAG",
+                        "pull_request": "$PR_ID",
+                        "url": "$GIT_URL",
+                        "published": "$DEPLOYED"
+                    }
+                    """
+                    sh "echo $PAYLOAD"
                 }
             }
         }

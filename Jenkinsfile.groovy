@@ -101,7 +101,7 @@ pipeline {
                         "author": "$PR_OPENER",
                         "branch": "$GIT_BRANCH",
                         "hash": "$GIT_COMMIT",
-                        "tag": "${GIT_TAG:-null}",
+                        "tag": "$GIT_TAG",
                         "pull_request": "$PR_ID",
                         "url": "$GIT_URL",
                         "published": "$DEPLOYED"

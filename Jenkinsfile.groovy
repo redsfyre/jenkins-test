@@ -96,8 +96,7 @@ pipeline {
                         printenv
                     '''
                     def GIT_TAG = env.GIT_TAG ?: 'null'
-                    def PAYLOAD = """
-                    {
+                    def PAYLOAD = '''{
                         "author": "$PR_OPENER",
                         "branch": "$GIT_BRANCH",
                         "hash": "$GIT_COMMIT",
@@ -106,7 +105,7 @@ pipeline {
                         "url": "$GIT_URL",
                         "published": "$DEPLOYED"
                     }
-                    """
+                    '''
                     sh "echo $PAYLOAD > payload.json"
                     sh "cat payload.json"
                 }

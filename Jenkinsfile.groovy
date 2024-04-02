@@ -100,7 +100,7 @@ pipeline {
 {
     "author":"$PR_OPENER",
     "branch":"$GIT_BRANCH",
-    "hash":"$GIT_COMMIT",
+    "hash":"$PR_FROM_SHA",
     "tag":"$GIT_TAG",
     "pull_request":"$PR_ID",
     "url":"$GIT_URL",

@@ -19,7 +19,7 @@ pipeline {
             token: 'abc123',
             tokenCredentialId: '',
             printContributedVariables: true,
-            printPostContent: true,
+            printPostContent: false,
             silentResponse: false,
             shouldNotFlatten: false,
             regexpFilterText: '',

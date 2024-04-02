@@ -4,8 +4,8 @@ pipeline {
     triggers {
         GenericTrigger(
             genericVariables: [
-                [key: 'REF_TYPE', regexpFilter: '^(?!branch$)', value: '$.ref_type'],
-                [key: 'PR_ACTION', regexpFilter: '^(closed$)', value: '$.action'],
+                [key: 'REF_TYPE', value: '$.ref_type'],
+                [key: 'PR_ACTION', value: '$.action'],
                 [key: 'PR_OPENER', value: '$.sender.login'],
                 [key: 'PR_ID', value: '$.pull_request.number'],
                 [key: 'PR_TITLE', value: '$.pull_request.title'],
@@ -28,7 +28,7 @@ pipeline {
             silentResponse: false,
             shouldNotFlatten: false,
             regexpFilterText: '$REF_TYPE',
-            regexpFilterExpression: ''
+            regexpFilterExpression: '^(?!branch$)'
         )
 
         //GenericTrigger(

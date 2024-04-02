@@ -5,7 +5,7 @@ pipeline {
         GenericTrigger(
             genericVariables: [
                 [key: 'PR_ACTION', value: '$.action'],
-                [key: 'PR_OPENER', value: '$.pull_request.user.login'],
+                [key: 'PR_OPENER', value: '$.sender.login'],
                 [key: 'PR_ID', value: '$.pull_request.number'],
                 [key: 'PR_TITLE', value: '$.pull_request.title'],
                 [key: 'PR_BODY', value: '$.pull_request.body'],
@@ -14,9 +14,28 @@ pipeline {
                 [key: 'PR_FROM_REF', value: '$.pull_request.base.ref'],
                 [key: 'PR_TO_SHA', value: '$.pull_request.head.sha'],
                 [key: 'PR_TO_REF', value: '$.pull_request.head.ref'],
+                [key: 'REPO_URL', value: '$.repository.clone_url']
             ],
             causeString: '#$PR_ID $PR_ACTION by $PR_OPENER',
             token: 'abc123',
+            tokenCredentialId: '',
+            printContributedVariables: true,
+            printPostContent: false,
+            silentResponse: false,
+            shouldNotFlatten: false,
+            regexpFilterText: '',
+            regexpFilterExpression: ''
+        )
+
+        GenericTrigger(
+            genericVariables: [
+                [key: 'TAG_NAME', value: '$.ref'],
+                [key: 'TAG_CREATOR', value: '$.sender.login'],
+                [key: 'REPO_URL', value: '$.repository.clone_url'],
+                [key: 'TAG_BRANCH', value: '$.master_branch']
+            ],
+            causeString: '$TAG_NAME created by $TAG_CREATOR',
+            token: 'abc321',
             tokenCredentialId: '',
             printContributedVariables: true,
             printPostContent: false,
@@ -79,28 +98,20 @@ pipeline {
                 script {
                     sh '''
                         echo Variables from shell:
-                        #echo PR_ACTION = $PR_ACTION
-                        #echo PR_OPENER = $PR_OPENER
-                        #echo PR_ID = $PR_ID
-                        #echo PR_TITLE = $PR_TITLE
-                        #echo PR_BODY = $PR_BODY
-                        #echo PR_MERGE_COMMIT_SHA = $PR_MERGE_COMMIT_SHA
-                        #echo PR_FROM_SHA = $PR_FROM_SHA
-                        #echo PR_FROM_REF = $PR_FROM_REF
-                        #echo PR_TO_SHA = $PR_TO_SHA
-                        #echo PR_TO_REF = $PR_TO_REF
-                        #echo BUILD_USER_EMAIL = $BUILD_USER_EMAIL
-                        #echo GIT_BRANCH = $GIT_BRANCH
-                        #echo DEPLOYED = $DEPLOYED
-                        #export GIT_TAG="${GIT_TAG:-null}"
                         printenv
                     '''
-                    def GIT_TAG = env.GIT_TAG ?: 'null'
+                    def RELEASE_CREATOR = env.PR_OPENER ?: env.TAG_CREATOR
+                    def GIT_BRANCH = env.GIT_BRANCH ?: env.TAG_BRANCH
+                    def COMMIT_SHA = env.PR_MERGE_COMMIT_SHA ?: null
+                    def GIT_TAG = env.TAG_NAME ?: 'null'
+                    def PR_ID = env.PR_ID ?: null
+                    def GIT_URL = env.GIT_URL ?: env.REPO_URL
+                    def DEPLOYED = env.DEPLOYED ?: 'false'
                     def PAYLOAD = """
 {
-    "author":"$PR_OPENER",
+    "author":"$RELEASE_CREATOR",
     "branch":"$GIT_BRANCH",
-    "hash":"$PR_FROM_SHA",
+    "hash":"$COMMIT_SHA",
     "tag":"$GIT_TAG",
     "pull_request":"$PR_ID",
     "url":"$GIT_URL",

@@ -108,6 +108,7 @@ pipeline {
 }
                     """
                     echo "PAYLOAD: $PAYLOAD"
+                    httpRequest consoleLogResponseBody: true, contentType: 'APPLICATION_JSON', httpMode: 'POST', ignoreSslErrors: true, requestBody: PAYLOAD, responseHandle: 'NONE', url: 'https://stale-ducks-speak.loca.lt', wrapAsMultipart: false
                     //sh "cat payload.json"
                 }
             }

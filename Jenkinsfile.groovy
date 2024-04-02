@@ -92,6 +92,7 @@ pipeline {
                         #echo BUILD_USER_EMAIL = $BUILD_USER_EMAIL
                         #echo GIT_BRANCH = $GIT_BRANCH
                         #echo DEPLOYED = $DEPLOYED
+                        export GIT_TAG="${GIT_TAG:-null}"
                         printenv
                     '''
                     def PAYLOAD = """

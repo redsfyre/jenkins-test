@@ -96,9 +96,12 @@ pipeline {
                         printenv
                     '''
                     def GIT_TAG = env.GIT_TAG ?: 'null'
-                    def PAYLOAD = {"author":"$PR_OPENER", "branch":"$GIT_BRANCH", "hash":"$GIT_COMMIT", "tag":"$GIT_TAG", "pull_request":"$PR_ID", "url":"$GIT_URL", "published":"$DEPLOYED"}
-                    sh "echo $PAYLOAD > payload.json"
-                    sh "cat payload.json"
+                    def PAYLOAD = '{"author":"$PR_OPENER", "branch":"$GIT_BRANCH", "hash":"$GIT_COMMIT", "tag":"$GIT_TAG", "pull_request":"$PR_ID", "url":"$GIT_URL", "published":"$DEPLOYED"}'
+                    writeJSON(file: 'payload.json', json: PAYLOAD)
+                    def read = readJSON file: 'payload.json'
+                    echo "Payload: ${read}"
+                    //sh "echo $PAYLOAD > payload.json"
+                    //sh "cat payload.json"
                 }
             }
         }

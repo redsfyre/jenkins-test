@@ -102,7 +102,7 @@ pipeline {
                     '''
                     def RELEASE_CREATOR = env.PR_OPENER ?: env.TAG_CREATOR
                     def GIT_BRANCH = env.GIT_BRANCH ?: env.TAG_BRANCH
-                    def COMMIT_SHA = env.PR_MERGE_COMMIT_SHA ?: null
+                    def COMMIT_SHA = env.PR_MERGE_COMMIT_SHA ?: env.GIT_COMMIT ?: 'null'
                     def GIT_TAG = env.TAG_NAME ?: 'null'
                     def PR_ID = env.PR_ID ?: null
                     def GIT_URL = env.GIT_URL ?: env.REPO_URL

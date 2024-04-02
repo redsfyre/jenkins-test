@@ -107,10 +107,7 @@ pipeline {
                         "published":"$DEPLOYED"
                     }
                     """
-                    writeJSON(file: 'payload.json', json: PAYLOAD)
-                    def read = readJSON file: 'payload.json'
-                    echo "Payload: ${read}"
-                    //sh "echo $PAYLOAD > payload.json"
+                    echo "PAYLOAD: $PAYLOAD"
                     //sh "cat payload.json"
                 }
             }

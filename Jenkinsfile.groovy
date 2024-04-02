@@ -92,9 +92,10 @@ pipeline {
                         #echo BUILD_USER_EMAIL = $BUILD_USER_EMAIL
                         #echo GIT_BRANCH = $GIT_BRANCH
                         #echo DEPLOYED = $DEPLOYED
-                        export GIT_TAG="${GIT_TAG:-null}"
+                        #export GIT_TAG="${GIT_TAG:-null}"
                         printenv
                     '''
+                    def GIT_TAG = env.GIT_TAG ?: 'null'
                     def PAYLOAD = """
                     {
                         "author": "$PR_OPENER",

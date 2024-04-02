@@ -2,30 +2,30 @@ pipeline {
     agent any
 
     triggers {
-        GenericTrigger(
-            genericVariables: [
-                [key: 'PR_ACTION', value: '$.action'],
-                [key: 'PR_OPENER', value: '$.sender.login'],
-                [key: 'PR_ID', value: '$.pull_request.number'],
-                [key: 'PR_TITLE', value: '$.pull_request.title'],
-                [key: 'PR_BODY', value: '$.pull_request.body'],
-                [key: 'PR_MERGE_COMMIT_SHA', value: '$.pull_request.merge_commit_sha'],
-                [key: 'PR_FROM_SHA', value: '$.pull_request.base.sha'],
-                [key: 'PR_FROM_REF', value: '$.pull_request.base.ref'],
-                [key: 'PR_TO_SHA', value: '$.pull_request.head.sha'],
-                [key: 'PR_TO_REF', value: '$.pull_request.head.ref'],
-                [key: 'REPO_URL', value: '$.repository.clone_url']
-            ],
-            causeString: '#$PR_ID $PR_ACTION by $PR_OPENER',
-            token: 'abc123',
-            tokenCredentialId: '',
-            printContributedVariables: true,
-            printPostContent: false,
-            silentResponse: false,
-            shouldNotFlatten: false,
-            regexpFilterText: '',
-            regexpFilterExpression: ''
-        )
+        //GenericTrigger(
+        //    genericVariables: [
+        //        [key: 'PR_ACTION', value: '$.action'],
+        //        [key: 'PR_OPENER', value: '$.sender.login'],
+        //        [key: 'PR_ID', value: '$.pull_request.number'],
+        //        [key: 'PR_TITLE', value: '$.pull_request.title'],
+        //        [key: 'PR_BODY', value: '$.pull_request.body'],
+        //        [key: 'PR_MERGE_COMMIT_SHA', value: '$.pull_request.merge_commit_sha'],
+        //        [key: 'PR_FROM_SHA', value: '$.pull_request.base.sha'],
+        //        [key: 'PR_FROM_REF', value: '$.pull_request.base.ref'],
+        //        [key: 'PR_TO_SHA', value: '$.pull_request.head.sha'],
+        //        [key: 'PR_TO_REF', value: '$.pull_request.head.ref'],
+        //        [key: 'REPO_URL', value: '$.repository.clone_url']
+        //    ],
+        //    causeString: '#$PR_ID $PR_ACTION by $PR_OPENER',
+        //    token: 'abc123',
+        //    tokenCredentialId: '',
+        //    printContributedVariables: true,
+        //    printPostContent: false,
+        //    silentResponse: false,
+        //    shouldNotFlatten: false,
+        //    regexpFilterText: '',
+        //    regexpFilterExpression: ''
+        //)
 
         GenericTrigger(
             genericVariables: [

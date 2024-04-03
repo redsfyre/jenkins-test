@@ -2,23 +2,52 @@ pipeline {
     agent any
 
     triggers {
+        //GenericTrigger(
+        //    genericVariables: [
+        //        [key: 'REF_TYPE', value: '$.ref_type'],
+        //        [key: 'PR_ACTION', value: '$.action'],
+        //        [key: 'PR_OPENER', value: '$.sender.login'],
+        //        [key: 'PR_ID', value: '$.pull_request.number'],
+        //        [key: 'PR_TITLE', value: '$.pull_request.title'],
+        //        [key: 'PR_BODY', value: '$.pull_request.body'],
+        //        [key: 'PR_MERGE_COMMIT_SHA', value: '$.pull_request.merge_commit_sha'],
+        //        [key: 'PR_FROM_SHA', value: '$.pull_request.base.sha'],
+        //        [key: 'PR_FROM_REF', value: '$.pull_request.base.ref'],
+        //        [key: 'PR_TO_SHA', value: '$.pull_request.head.sha'],
+        //        [key: 'PR_TO_REF', value: '$.pull_request.head.ref'],
+        //        [key: 'TAG_NAME', value: '$.ref'],
+        //        [key: 'TAG_CREATOR', value: '$.sender.login'],
+        //        [key: 'TAG_BRANCH', value: '$.master_branch'],
+        //        [key: 'REPO_URL', value: '$.repository.clone_url']
+        //    ],
+        //    causeString: '#$PR_ID $PR_ACTION by $PR_OPENER',
+        //    token: 'abc123',
+        //    tokenCredentialId: '',
+        //    printContributedVariables: true,
+        //    printPostContent: false,
+        //    silentResponse: false,
+        //    shouldNotFlatten: false,
+        //    regexpFilterText: '$REF_TYPE',
+        //    regexpFilterExpression: '^(?!branch$)'
+        //)
+
         GenericTrigger(
             genericVariables: [
-                [key: 'REF_TYPE', value: '$.ref_type'],
-                [key: 'PR_ACTION', value: '$.action'],
-                [key: 'PR_OPENER', value: '$.sender.login'],
-                [key: 'PR_ID', value: '$.pull_request.number'],
-                [key: 'PR_TITLE', value: '$.pull_request.title'],
-                [key: 'PR_BODY', value: '$.pull_request.body'],
-                [key: 'PR_MERGE_COMMIT_SHA', value: '$.pull_request.merge_commit_sha'],
-                [key: 'PR_FROM_SHA', value: '$.pull_request.base.sha'],
-                [key: 'PR_FROM_REF', value: '$.pull_request.base.ref'],
-                [key: 'PR_TO_SHA', value: '$.pull_request.head.sha'],
-                [key: 'PR_TO_REF', value: '$.pull_request.head.ref'],
-                [key: 'TAG_NAME', value: '$.ref'],
-                [key: 'TAG_CREATOR', value: '$.sender.login'],
-                [key: 'TAG_BRANCH', value: '$.master_branch'],
-                [key: 'REPO_URL', value: '$.repository.clone_url']
+                [key: 'REF_TYPE', value: '$.object_kind'],
+                [key: 'PR_ACTION', value: '$.object_attributes.state'],
+                [key: 'PR_OPENER', value: '$.user.username'],
+                [key: 'PR_ID', value: '$.object_attributes.iid'],
+                [key: 'PR_TITLE', value: '$.object_attributes.title'],
+                [key: 'PR_BODY', value: '$.object_attributes.description'],
+                [key: 'PR_MERGE_COMMIT_SHA', value: '$.object_attributes.merge_commit_sha'],
+                [key: 'PR_FROM_SHA', value: '$.object_attributes.source.sha'],
+                [key: 'PR_FROM_REF', value: '$.object_attributes.source.branch'],
+                [key: 'PR_TO_SHA', value: '$.object_attributes.target.sha'],
+                [key: 'PR_TO_REF', value: '$.object_attributes.target.branch'],
+                [key: 'TAG_NAME', value: '$.ref', regexpFilter: '^refs\\/tags\\/'],
+                [key: 'TAG_CREATOR', value: '$.user_username'],
+                [key: 'TAG_BRANCH', value: '$.repository.default_branch'],
+                [key: 'REPO_URL', value: '$.project.http_url']
             ],
             causeString: '#$PR_ID $PR_ACTION by $PR_OPENER',
             token: 'abc123',
@@ -88,7 +117,7 @@ pipeline {
                         printenv
                     '''
                     def RELEASE_CREATOR = env.PR_OPENER ?: env.TAG_CREATOR ?: env.BUILD_USER_EMAIL ?: ''
-                    def GIT_BRANCH = env.GIT_BRANCH ?: env.TAG_BRANCH
+                    def GIT_BRANCH = env.GIT_BRANCH ?: env.TAG_BRANCH ?: ''
                     def COMMIT_SHA = env.PR_MERGE_COMMIT_SHA ?: env.GIT_COMMIT ?: ''
                     def GIT_TAG = env.TAG_NAME ?: ''
                     def PR_ID = env.PR_ID ?: ''

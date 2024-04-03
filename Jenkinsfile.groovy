@@ -106,7 +106,7 @@ pipeline {
 }
                     """
                     echo "PAYLOAD: $PAYLOAD"
-                    httpRequest consoleLogResponseBody: true, contentType: 'APPLICATION_JSON', httpMode: 'POST', ignoreSslErrors: true, requestBody: PAYLOAD, responseHandle: 'NONE', url: 'https://plenty-worlds-stare.loca.lt/api/deployment/x', wrapAsMultipart: false
+                    httpRequest consoleLogResponseBody: true, contentType: 'APPLICATION_JSON', customHeaders: [[maskValue: false, name: 'jenkins-event-type', value: 'workflow-completed']] httpMode: 'POST', ignoreSslErrors: true, requestBody: PAYLOAD, responseHandle: 'NONE', url: 'https://plenty-worlds-stare.loca.lt/api/deployment/x', wrapAsMultipart: false
                     //sh "cat payload.json"
                 }
             }

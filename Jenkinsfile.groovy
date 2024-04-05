@@ -49,7 +49,7 @@ pipeline {
                 [key: 'TAG_BRANCH', value: '$.repository.default_branch'],
                 [key: 'REPO_URL', value: '$.project.http_url']
             ],
-            causeString: '#$PR_ID $PR_ACTION by $PR_OPENER',
+            causeString: '#$PR_ID $TAG_NAME $PR_ACTION $TAG_BRANCH by $PR_OPENER $TAG_CREATOR',
             token: 'abc123',
             tokenCredentialId: '',
             printContributedVariables: true,

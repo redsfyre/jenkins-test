@@ -77,20 +77,12 @@ pipeline {
                 echo "Deploying"
             }
         }
-
-        stage('create payload for manual build') {
-            when {
-                allOf {
-                    expression {
-                        return currentBuild.rawBuild.getCause(hudson.model.Cause$UserIdCause) != null
-                    }
-                    expression {
-                        return params.DEPLOY == 'true'
-                    }
-                }
-            }
-            steps {
-                script {
+    }
+    post {
+        success {
+            script{
+                if (currentBuild.rawBuild.getCause(hudson.model.Cause$UserIdCause) != null) {
+                    echo "Build triggered by user"
                     def GIT_TAG = env.GIT_TAG ?: ''
                     def PULL_REQUEST = env.PR_ID ?: ''
                     def PAYLOAD = """
@@ -106,18 +98,13 @@ pipeline {
                     """
                     echo "PAYLOAD: $PAYLOAD"
                     httpRequest consoleLogResponseBody: true, contentType: 'APPLICATION_JSON', customHeaders: [[maskValue: false, name: 'jenkins-event-type', value: 'workflow-completed']], httpMode: 'POST', ignoreSslErrors: true, requestBody: PAYLOAD, responseHandle: 'NONE', url: 'https://stale-ducks-speak.loca.lt/jenkins', wrapAsMultipart: false
-                    //sh "cat payload.json"
+                } else {
+                    echo "Build triggered by webhook"
+                    def POST_CONTENT = env.POST_CONTENT ?: '{ "status": "failed" }'
+                    def PAYLOAD = "$POST_CONTENT"
+                    echo "PAYLOAD: $PAYLOAD"
+                    httpRequest consoleLogResponseBody: true, contentType: 'APPLICATION_JSON', customHeaders: [[maskValue: false, name: 'jenkins-event-type', value: 'workflow-completed']], httpMode: 'POST', ignoreSslErrors: true, requestBody: PAYLOAD, responseHandle: 'NONE', url: 'https://stale-ducks-speak.loca.lt/jenkins', wrapAsMultipart: false
                 }
-            }
-        }
-    }
-    post {
-        success {
-            script{
-                def POST_CONTENT = env.POST_CONTENT ?: '{ "status": "failed" }'
-                def PAYLOAD = "$POST_CONTENT"
-                echo "PAYLOAD: $PAYLOAD"
-                httpRequest consoleLogResponseBody: true, contentType: 'APPLICATION_JSON', customHeaders: [[maskValue: false, name: 'jenkins-event-type', value: 'workflow-completed']], httpMode: 'POST', ignoreSslErrors: true, requestBody: PAYLOAD, responseHandle: 'NONE', url: 'https://stale-ducks-speak.loca.lt/jenkins', wrapAsMultipart: false
             }
         }
     }

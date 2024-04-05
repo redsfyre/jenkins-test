@@ -87,6 +87,7 @@ pipeline {
                         }
                         expression {
                             return params.DEPLOY == 'true'
+                        }
                     }
                 }
                 script {

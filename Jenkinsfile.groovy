@@ -33,22 +33,25 @@ pipeline {
 
         GenericTrigger(
             genericVariables: [
-                [key: 'REF_TYPE', value: '$.object_kind'],
-                [key: 'PR_ACTION', value: '$.object_attributes.state'],
-                [key: 'PR_OPENER', value: '$.user.username'],
-                [key: 'PR_ID', value: '$.object_attributes.iid'],
-                [key: 'PR_TITLE', value: '$.object_attributes.title'],
-                [key: 'PR_BODY', value: '$.object_attributes.description'],
-                [key: 'PR_MERGE_COMMIT_SHA', value: '$.object_attributes.merge_commit_sha'],
-                [key: 'PR_FROM_SHA', value: '$.object_attributes.source.sha'],
-                [key: 'PR_FROM_REF', value: '$.object_attributes.source.branch'],
-                [key: 'PR_TO_SHA', value: '$.object_attributes.target.sha'],
-                [key: 'PR_TO_REF', value: '$.object_attributes.target.branch'],
-                [key: 'TAG_NAME', value: '$.ref', regexpFilter: '^refs\\/tags\\/'],
-                [key: 'TAG_CREATOR', value: '$.user_username'],
-                [key: 'TAG_BRANCH', value: '$.repository.default_branch'],
-                [key: 'REPO_URL', value: '$.project.http_url']
+                [key: 'POST_CONTENT', value: '$']
+
+                //[key: 'REF_TYPE', value: '$.object_kind'],
+                //[key: 'PR_ACTION', value: '$.object_attributes.state'],
+                //[key: 'PR_OPENER', value: '$.user.username'],
+                //[key: 'PR_ID', value: '$.object_attributes.iid'],
+                //[key: 'PR_TITLE', value: '$.object_attributes.title'],
+                //[key: 'PR_BODY', value: '$.object_attributes.description'],
+                //[key: 'PR_MERGE_COMMIT_SHA', value: '$.object_attributes.merge_commit_sha'],
+                //[key: 'PR_FROM_SHA', value: '$.object_attributes.source.sha'],
+                //[key: 'PR_FROM_REF', value: '$.object_attributes.source.branch'],
+                //[key: 'PR_TO_SHA', value: '$.object_attributes.target.sha'],
+                //[key: 'PR_TO_REF', value: '$.object_attributes.target.branch'],
+                //[key: 'TAG_NAME', value: '$.ref', regexpFilter: '^refs\\/tags\\/'],
+                //[key: 'TAG_CREATOR', value: '$.user_username'],
+                //[key: 'TAG_BRANCH', value: '$.repository.default_branch'],
+                //[key: 'REPO_URL', value: '$.project.http_url']
             ],
+            //causeString: '#$PR_ID $TAG_NAME $PR_ACTION $TAG_BRANCH by $PR_OPENER $TAG_CREATOR',
             causeString: '#$PR_ID $TAG_NAME $PR_ACTION $TAG_BRANCH by $PR_OPENER $TAG_CREATOR',
             token: 'abc123',
             tokenCredentialId: '',
@@ -122,8 +125,8 @@ pipeline {
                     def COMMIT_SHA = env.PR_MERGE_COMMIT_SHA ?: env.GIT_COMMIT ?: ''
                     def GIT_TAG = env.TAG_NAME ?: ''
                     def PR_ID = env.PR_ID ?: ''
-                    def GIT_URL = env.GIT_URL ?: env.REPO_URL
-                    def DEPLOYED = env.DEPLOYED ?: 'false'
+                    def GIT_URL = env.GIT_URL ?: env.REPO_URL ?: ''
+                    def DEPLOYED = env.DEPLOYED ?: 'false' :? ''
                     def PAYLOAD = """
 {
     "author":"$RELEASE_CREATOR",
@@ -135,8 +138,11 @@ pipeline {
     "published":"$DEPLOYED"
 }
                     """
-                    echo "PAYLOAD: $PAYLOAD"
-                    httpRequest consoleLogResponseBody: true, contentType: 'APPLICATION_JSON', customHeaders: [[maskValue: false, name: 'jenkins-event-type', value: 'workflow-completed']], httpMode: 'POST', ignoreSslErrors: true, requestBody: PAYLOAD, responseHandle: 'NONE', url: 'https://stale-ducks-speak.loca.lt/jenkins', wrapAsMultipart: false
+                    def NEW_PAYLOAD = """
+$POST_CONTENT
+                    """
+                    echo "PAYLOAD: $POST_CONTENT"
+                    httpRequest consoleLogResponseBody: true, contentType: 'APPLICATION_JSON', customHeaders: [[maskValue: false, name: 'jenkins-event-type', value: 'workflow-completed']], httpMode: 'POST', ignoreSslErrors: true, requestBody: NEW_PAYLOAD, responseHandle: 'NONE', url: 'https://stale-ducks-speak.loca.lt/jenkins', wrapAsMultipart: false
                     //sh "cat payload.json"
                 }
             }

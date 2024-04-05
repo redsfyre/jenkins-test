@@ -1,0 +1,69 @@
+{
+  "object_kind": "tag_push",
+  "event_name": "tag_push",
+  "before": "0000000000000000000000000000000000000000",
+  "after": "1ea31b1992c0885271c79f7c9357726593844da9",
+  "ref": "refs/tags/v4",
+  "ref_protected": false,
+  "checkout_sha": "aaee578df82c25cfb9e47896eadb6b0f846407e7",
+  "message": "v4",
+  "user_id": 5534793,
+  "user_name": "Yasin İsa YILDIRIM",
+  "user_username": "yildirim-dev",
+  "user_email": "[REDACTED]",
+  "user_avatar": "https://gitlab.com/uploads/-/system/user/avatar/5534793/avatar.png",
+  "project_id": 56457895,
+  "project": {
+    "id": 56457895,
+    "name": "jenkins-test",
+    "description": "Jenkins CI post action webhook tests",
+    "web_url": "https://gitlab.com/yildirim-dev/jenkins-test",
+    "avatar_url": null,
+    "git_ssh_url": "git@gitlab.com:yildirim-dev/jenkins-test.git",
+    "git_http_url": "https://gitlab.com/yildirim-dev/jenkins-test.git",
+    "namespace": "Yasin İsa YILDIRIM",
+    "visibility_level": 20,
+    "path_with_namespace": "yildirim-dev/jenkins-test",
+    "default_branch": "main",
+    "ci_config_path": "",
+    "homepage": "https://gitlab.com/yildirim-dev/jenkins-test",
+    "url": "git@gitlab.com:yildirim-dev/jenkins-test.git",
+    "ssh_url": "git@gitlab.com:yildirim-dev/jenkins-test.git",
+    "http_url": "https://gitlab.com/yildirim-dev/jenkins-test.git"
+  },
+  "commits": [
+    {
+      "id": "aaee578df82c25cfb9e47896eadb6b0f846407e7",
+      "message": "jenkinsfile edited to support gitlab\n",
+      "title": "jenkinsfile edited to support gitlab",
+      "timestamp": "2024-04-03T16:46:45+03:00",
+      "url": "https://gitlab.com/yildirim-dev/jenkins-test/-/commit/aaee578df82c25cfb9e47896eadb6b0f846407e7",
+      "author": {
+        "name": "Yasin Isa YILDIRIM",
+        "email": "[REDACTED]"
+      },
+      "added": [
+
+      ],
+      "modified": [
+        "Jenkinsfile.groovy"
+      ],
+      "removed": [
+
+      ]
+    }
+  ],
+  "total_commits_count": 1,
+  "push_options": {
+  },
+  "repository": {
+    "name": "jenkins-test",
+    "url": "git@gitlab.com:yildirim-dev/jenkins-test.git",
+    "description": "Jenkins CI post action webhook tests",
+    "homepage": "https://gitlab.com/yildirim-dev/jenkins-test",
+    "git_http_url": "https://gitlab.com/yildirim-dev/jenkins-test.git",
+    "git_ssh_url": "git@gitlab.com:yildirim-dev/jenkins-test.git",
+    "visibility_level": 20
+  }
+}
+

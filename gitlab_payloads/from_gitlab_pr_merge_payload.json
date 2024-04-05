@@ -1,137 +1,143 @@
 {
-  "object_kind": "merge_request",
-  "event_type": "merge_request",
-  "user": {
-    "id": 5534793,
-    "name": "Yasin İsa YILDIRIM",
-    "username": "yildirim-dev",
-    "avatar_url": "https://gitlab.com/uploads/-/system/user/avatar/5534793/avatar.png",
-    "email": "[REDACTED]"
-  },
-  "project": {
-    "id": 56457895,
-    "name": "jenkins-test",
-    "description": "Jenkins CI post action webhook tests",
-    "web_url": "https://gitlab.com/yildirim-dev/jenkins-test",
-    "avatar_url": null,
-    "git_ssh_url": "git@gitlab.com:yildirim-dev/jenkins-test.git",
-    "git_http_url": "https://gitlab.com/yildirim-dev/jenkins-test.git",
-    "namespace": "Yasin İsa YILDIRIM",
-    "visibility_level": 20,
-    "path_with_namespace": "yildirim-dev/jenkins-test",
-    "default_branch": "main",
-    "ci_config_path": "",
-    "homepage": "https://gitlab.com/yildirim-dev/jenkins-test",
-    "url": "git@gitlab.com:yildirim-dev/jenkins-test.git",
-    "ssh_url": "git@gitlab.com:yildirim-dev/jenkins-test.git",
-    "http_url": "https://gitlab.com/yildirim-dev/jenkins-test.git"
-  },
-  "object_attributes": {
-    "assignee_id": null,
-    "author_id": 5534793,
-    "created_at": "2024-04-03 06:37:58 UTC",
-    "description": "descr",
-    "draft": false,
-    "head_pipeline_id": null,
-    "id": 292890478,
-    "iid": 9,
-    "last_edited_at": null,
-    "last_edited_by_id": null,
-    "merge_commit_sha": null,
-    "merge_error": null,
-    "merge_params": {
+    "object_kind": "merge_request",
+    "event_type": "merge_request",
+    "user": {
+        "id": 5534793,
+        "name": "Yasin ?sa YILDIRIM",
+        "username": "yildirim-dev",
+        "avatar_url": "https://gitlab.com/uploads/-/system/user/avatar/5534793/avatar.png",
+        "email": "yasinisa@yildirim.dev"
     },
-    "merge_status": "unchecked",
-    "merge_user_id": null,
-    "merge_when_pipeline_succeeds": false,
-    "milestone_id": null,
-    "source_branch": "release/v1.5",
-    "source_project_id": 56457895,
-    "state_id": 1,
-    "target_branch": "main",
-    "target_project_id": 56457895,
-    "time_estimate": 0,
-    "title": "pr merge test",
-    "updated_at": "2024-04-03 06:37:58 UTC",
-    "updated_by_id": null,
-    "prepared_at": null,
-    "url": "https://gitlab.com/yildirim-dev/jenkins-test/-/merge_requests/9",
-    "source": {
-      "id": 56457895,
-      "name": "jenkins-test",
-      "description": "Jenkins CI post action webhook tests",
-      "web_url": "https://gitlab.com/yildirim-dev/jenkins-test",
-      "avatar_url": null,
-      "git_ssh_url": "git@gitlab.com:yildirim-dev/jenkins-test.git",
-      "git_http_url": "https://gitlab.com/yildirim-dev/jenkins-test.git",
-      "namespace": "Yasin İsa YILDIRIM",
-      "visibility_level": 20,
-      "path_with_namespace": "yildirim-dev/jenkins-test",
-      "default_branch": "main",
-      "ci_config_path": "",
-      "homepage": "https://gitlab.com/yildirim-dev/jenkins-test",
-      "url": "git@gitlab.com:yildirim-dev/jenkins-test.git",
-      "ssh_url": "git@gitlab.com:yildirim-dev/jenkins-test.git",
-      "http_url": "https://gitlab.com/yildirim-dev/jenkins-test.git"
+    "project": {
+        "id": 56457895,
+        "name": "jenkins-test",
+        "description": "Jenkins CI post action webhook tests",
+        "web_url": "https://gitlab.com/yildirim-dev/jenkins-test",
+        "avatar_url": null,
+        "git_ssh_url": "git@gitlab.com:yildirim-dev/jenkins-test.git",
+        "git_http_url": "https://gitlab.com/yildirim-dev/jenkins-test.git",
+        "namespace": "Yasin ?sa YILDIRIM",
+        "visibility_level": 20,
+        "path_with_namespace": "yildirim-dev/jenkins-test",
+        "default_branch": "main",
+        "ci_config_path": "",
+        "homepage": "https://gitlab.com/yildirim-dev/jenkins-test",
+        "url": "git@gitlab.com:yildirim-dev/jenkins-test.git",
+        "ssh_url": "git@gitlab.com:yildirim-dev/jenkins-test.git",
+        "http_url": "https://gitlab.com/yildirim-dev/jenkins-test.git"
     },
-    "target": {
-      "id": 56457895,
-      "name": "jenkins-test",
-      "description": "Jenkins CI post action webhook tests",
-      "web_url": "https://gitlab.com/yildirim-dev/jenkins-test",
-      "avatar_url": null,
-      "git_ssh_url": "git@gitlab.com:yildirim-dev/jenkins-test.git",
-      "git_http_url": "https://gitlab.com/yildirim-dev/jenkins-test.git",
-      "namespace": "Yasin İsa YILDIRIM",
-      "visibility_level": 20,
-      "path_with_namespace": "yildirim-dev/jenkins-test",
-      "default_branch": "main",
-      "ci_config_path": "",
-      "homepage": "https://gitlab.com/yildirim-dev/jenkins-test",
-      "url": "git@gitlab.com:yildirim-dev/jenkins-test.git",
-      "ssh_url": "git@gitlab.com:yildirim-dev/jenkins-test.git",
-      "http_url": "https://gitlab.com/yildirim-dev/jenkins-test.git"
+    "object_attributes": {
+        "assignee_id": null,
+        "author_id": 5534793,
+        "created_at": "2024-04-05 07:08:49 UTC",
+        "description": "Jenkins gitlab pr create tests",
+        "draft": false,
+        "head_pipeline_id": null,
+        "id": 293527684,
+        "iid": 10,
+        "last_edited_at": null,
+        "last_edited_by_id": null,
+        "merge_commit_sha": "c276fae847fbad9bf9eae585844aaa56b625456b",
+        "merge_error": null,
+        "merge_params": {
+            "force_remove_source_branch": "0"
+        },
+        "merge_status": "can_be_merged",
+        "merge_user_id": null,
+        "merge_when_pipeline_succeeds": false,
+        "milestone_id": null,
+        "source_branch": "feature/v3.0.0",
+        "source_project_id": 56457895,
+        "state_id": 3,
+        "target_branch": "main",
+        "target_project_id": 56457895,
+        "time_estimate": 0,
+        "title": "PR Jenkins Trigger Test",
+        "updated_at": "2024-04-05 07:10:10 UTC",
+        "updated_by_id": null,
+        "prepared_at": "2024-04-05 07:08:53 UTC",
+        "url": "https://gitlab.com/yildirim-dev/jenkins-test/-/merge_requests/10",
+        "source": {
+            "id": 56457895,
+            "name": "jenkins-test",
+            "description": "Jenkins CI post action webhook tests",
+            "web_url": "https://gitlab.com/yildirim-dev/jenkins-test",
+            "avatar_url": null,
+            "git_ssh_url": "git@gitlab.com:yildirim-dev/jenkins-test.git",
+            "git_http_url": "https://gitlab.com/yildirim-dev/jenkins-test.git",
+            "namespace": "Yasin ?sa YILDIRIM",
+            "visibility_level": 20,
+            "path_with_namespace": "yildirim-dev/jenkins-test",
+            "default_branch": "main",
+            "ci_config_path": "",
+            "homepage": "https://gitlab.com/yildirim-dev/jenkins-test",
+            "url": "git@gitlab.com:yildirim-dev/jenkins-test.git",
+            "ssh_url": "git@gitlab.com:yildirim-dev/jenkins-test.git",
+            "http_url": "https://gitlab.com/yildirim-dev/jenkins-test.git"
+        },
+        "target": {
+            "id": 56457895,
+            "name": "jenkins-test",
+            "description": "Jenkins CI post action webhook tests",
+            "web_url": "https://gitlab.com/yildirim-dev/jenkins-test",
+            "avatar_url": null,
+            "git_ssh_url": "git@gitlab.com:yildirim-dev/jenkins-test.git",
+            "git_http_url": "https://gitlab.com/yildirim-dev/jenkins-test.git",
+            "namespace": "Yasin ?sa YILDIRIM",
+            "visibility_level": 20,
+            "path_with_namespace": "yildirim-dev/jenkins-test",
+            "default_branch": "main",
+            "ci_config_path": "",
+            "homepage": "https://gitlab.com/yildirim-dev/jenkins-test",
+            "url": "git@gitlab.com:yildirim-dev/jenkins-test.git",
+            "ssh_url": "git@gitlab.com:yildirim-dev/jenkins-test.git",
+            "http_url": "https://gitlab.com/yildirim-dev/jenkins-test.git"
+        },
+        "last_commit": {
+            "id": "e3a6b13d4053a50c7be767f2c5d26fd1e5425f53",
+            "message": "pr test\n",
+            "title": "pr test",
+            "timestamp": "2024-04-05T10:07:55+03:00",
+            "url": "https://gitlab.com/yildirim-dev/jenkins-test/-/commit/e3a6b13d4053a50c7be767f2c5d26fd1e5425f53",
+            "author": {
+                "name": "Yasin Isa YILDIRIM",
+                "email": "yasin.yildirim@faraday.net"
+            }
+        },
+        "work_in_progress": false,
+        "total_time_spent": 0,
+        "time_change": 0,
+        "human_total_time_spent": null,
+        "human_time_change": null,
+        "human_time_estimate": null,
+        "assignee_ids": [],
+        "reviewer_ids": [],
+        "labels": [],
+        "state": "merged",
+        "blocking_discussions_resolved": true,
+        "first_contribution": false,
+        "detailed_merge_status": "not_open",
+        "action": "merge"
     },
-    "last_commit": {
-      "id": "2570192f6000c8a8c916369e6d49b7490484dbfd",
-      "message": "pr merge test\n",
-      "title": "pr merge test",
-      "timestamp": "2024-04-03T09:35:22+03:00",
-      "url": "https://gitlab.com/yildirim-dev/jenkins-test/-/commit/2570192f6000c8a8c916369e6d49b7490484dbfd",
-      "author": {
-        "name": "Yasin Isa YILDIRIM",
-        "email": "[REDACTED]"
-      }
+    "labels": [],
+    "changes": {
+        "merge_commit_sha": {
+            "previous": null,
+            "current": "c276fae847fbad9bf9eae585844aaa56b625456b"
+        },
+        "state_id": {
+            "previous": 1,
+            "current": 3
+        },
+        "updated_at": {
+            "previous": "2024-04-05 07:08:53 UTC",
+            "current": "2024-04-05 07:10:10 UTC"
+        }
     },
-    "work_in_progress": false,
-    "total_time_spent": 0,
-    "time_change": 0,
-    "human_total_time_spent": null,
-    "human_time_change": null,
-    "human_time_estimate": null,
-    "assignee_ids": [
-
-    ],
-    "reviewer_ids": [
-
-    ],
-    "labels": [
-
-    ],
-    "state": "opened",
-    "blocking_discussions_resolved": true,
-    "first_contribution": false,
-    "detailed_merge_status": "unchecked"
-  },
-  "labels": [
-
-  ],
-  "changes": {
-  },
-  "repository": {
-    "name": "jenkins-test",
-    "url": "git@gitlab.com:yildirim-dev/jenkins-test.git",
-    "description": "Jenkins CI post action webhook tests",
-    "homepage": "https://gitlab.com/yildirim-dev/jenkins-test"
-  }
+    "repository": {
+        "name": "jenkins-test",
+        "url": "git@gitlab.com:yildirim-dev/jenkins-test.git",
+        "description": "Jenkins CI post action webhook tests",
+        "homepage": "https://gitlab.com/yildirim-dev/jenkins-test"
+    }
 }

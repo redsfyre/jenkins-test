@@ -94,6 +94,7 @@ pipeline {
                     def GIT_TAG = env.GIT_TAG ?: ''
                     def PULL_REQUEST = env.PR_ID ?: ''
                     def PAYLOAD = """
+{
 "author":"$BUILD_USER_ID",
 "branch":"$GIT_BRANCH",
 "hash":"$GIT_COMMIT",
@@ -101,6 +102,7 @@ pipeline {
 "pull_request":"$PULL_REQUEST",
 "url":"$GIT_URL",
 "published":"$DEPLOY"
+}
                     """
                     echo "PAYLOAD: $PAYLOAD"
                     httpRequest consoleLogResponseBody: true, contentType: 'APPLICATION_JSON', customHeaders: [[maskValue: false, name: 'jenkins-event-type', value: 'workflow-completed']], httpMode: 'POST', ignoreSslErrors: true, requestBody: PAYLOAD, responseHandle: 'NONE', url: 'https://stale-ducks-speak.loca.lt/jenkins', wrapAsMultipart: false

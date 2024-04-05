@@ -87,7 +87,7 @@ pipeline {
                     def PULL_REQUEST = env.PR_ID ?: ''
                     def PAYLOAD = """
 {
-"author":"$BUILD_USER_ID",
+"author":"$BUILD_USER_EMAIL",
 "branch":"$GIT_BRANCH",
 "hash":"$GIT_COMMIT",
 "tag":"$GIT_TAG",

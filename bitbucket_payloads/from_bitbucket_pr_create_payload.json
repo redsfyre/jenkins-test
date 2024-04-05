@@ -1,0 +1,254 @@
+{
+  "repository": {
+    "type": "repository",
+    "full_name": "yasinisayildirim/jenkinsci-test",
+    "links": {
+      "self": {
+        "href": "https://api.bitbucket.org/2.0/repositories/yasinisayildirim/jenkinsci-test"
+      },
+      "html": {
+        "href": "https://bitbucket.org/yasinisayildirim/jenkinsci-test"
+      },
+      "avatar": {
+        "href": "https://bytebucket.org/ravatar/%7Bbc079dea-b0a0-4bcb-88b5-9218d1c21e71%7D?ts=default"
+      }
+    },
+    "name": "jenkinsci-test",
+    "scm": "git",
+    "website": null,
+    "owner": {
+      "display_name": "Yasin İsa YILDIRIM",
+      "links": {
+        "self": {
+          "href": "https://api.bitbucket.org/2.0/users/%7B14577316-8740-41a5-a1a0-ac5c575b0adc%7D"
+        },
+        "avatar": {
+          "href": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/5d93b83dd8794c0d8827543a/e2b1fdfe-dd19-432c-a648-5e1682b65017/128"
+        },
+        "html": {
+          "href": "https://bitbucket.org/%7B14577316-8740-41a5-a1a0-ac5c575b0adc%7D/"
+        }
+      },
+      "type": "user",
+      "uuid": "{14577316-8740-41a5-a1a0-ac5c575b0adc}",
+      "account_id": "5d93b83dd8794c0d8827543a",
+      "nickname": "Yasin İsa YILDIRIM"
+    },
+    "workspace": {
+      "type": "workspace",
+      "uuid": "{14577316-8740-41a5-a1a0-ac5c575b0adc}",
+      "name": "Yasin İsa YILDIRIM",
+      "slug": "yasinisayildirim",
+      "links": {
+        "avatar": {
+          "href": "https://bitbucket.org/workspaces/yasinisayildirim/avatar/?ts=1569962242"
+        },
+        "html": {
+          "href": "https://bitbucket.org/yasinisayildirim/"
+        },
+        "self": {
+          "href": "https://api.bitbucket.org/2.0/workspaces/yasinisayildirim"
+        }
+      }
+    },
+    "is_private": false,
+    "project": {
+      "type": "project",
+      "key": "CIIN",
+      "uuid": "{acf4d45d-5883-4808-84df-57126df34fe0}",
+      "name": "CI_Integrations",
+      "links": {
+        "self": {
+          "href": "https://api.bitbucket.org/2.0/workspaces/yasinisayildirim/projects/CIIN"
+        },
+        "html": {
+          "href": "https://bitbucket.org/yasinisayildirim/workspace/projects/CIIN"
+        },
+        "avatar": {
+          "href": "https://bitbucket.org/account/user/yasinisayildirim/projects/CIIN/avatar/32?ts=1711710026"
+        }
+      }
+    },
+    "uuid": "{bc079dea-b0a0-4bcb-88b5-9218d1c21e71}",
+    "parent": null
+  },
+  "actor": {
+    "display_name": "Yasin İsa YILDIRIM",
+    "links": {
+      "self": {
+        "href": "https://api.bitbucket.org/2.0/users/%7B14577316-8740-41a5-a1a0-ac5c575b0adc%7D"
+      },
+      "avatar": {
+        "href": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/5d93b83dd8794c0d8827543a/e2b1fdfe-dd19-432c-a648-5e1682b65017/128"
+      },
+      "html": {
+        "href": "https://bitbucket.org/%7B14577316-8740-41a5-a1a0-ac5c575b0adc%7D/"
+      }
+    },
+    "type": "user",
+    "uuid": "{14577316-8740-41a5-a1a0-ac5c575b0adc}",
+    "account_id": "5d93b83dd8794c0d8827543a",
+    "nickname": "Yasin İsa YILDIRIM"
+  },
+  "pullrequest": {
+    "comment_count": 0,
+    "task_count": 0,
+    "type": "pullrequest",
+    "id": 1,
+    "title": "pr test3",
+    "description": "",
+    "rendered": {
+      "title": {
+        "type": "rendered",
+        "raw": "pr test3",
+        "markup": "markdown",
+        "html": "<p>pr test3</p>"
+      },
+      "description": {
+        "type": "rendered",
+        "raw": "",
+        "markup": "markdown",
+        "html": ""
+      }
+    },
+    "state": "OPEN",
+    "merge_commit": null,
+    "close_source_branch": false,
+    "closed_by": null,
+    "author": {
+      "display_name": "Yasin İsa YILDIRIM",
+      "links": {
+        "self": {
+          "href": "https://api.bitbucket.org/2.0/users/%7B14577316-8740-41a5-a1a0-ac5c575b0adc%7D"
+        },
+        "avatar": {
+          "href": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/5d93b83dd8794c0d8827543a/e2b1fdfe-dd19-432c-a648-5e1682b65017/128"
+        },
+        "html": {
+          "href": "https://bitbucket.org/%7B14577316-8740-41a5-a1a0-ac5c575b0adc%7D/"
+        }
+      },
+      "type": "user",
+      "uuid": "{14577316-8740-41a5-a1a0-ac5c575b0adc}",
+      "account_id": "5d93b83dd8794c0d8827543a",
+      "nickname": "Yasin İsa YILDIRIM"
+    },
+    "reason": "",
+    "created_on": "2024-04-05T08:58:41.743620+00:00",
+    "updated_on": "2024-04-05T08:58:42.566899+00:00",
+    "destination": {
+      "branch": {
+        "name": "main"
+      },
+      "commit": {
+        "hash": "3fafee381de0",
+        "links": {
+          "self": {
+            "href": "https://api.bitbucket.org/2.0/repositories/yasinisayildirim/jenkinsci-test/commit/3fafee381de0"
+          },
+          "html": {
+            "href": "https://bitbucket.org/yasinisayildirim/jenkinsci-test/commits/3fafee381de0"
+          }
+        },
+        "type": "commit"
+      },
+      "repository": {
+        "type": "repository",
+        "full_name": "yasinisayildirim/jenkinsci-test",
+        "links": {
+          "self": {
+            "href": "https://api.bitbucket.org/2.0/repositories/yasinisayildirim/jenkinsci-test"
+          },
+          "html": {
+            "href": "https://bitbucket.org/yasinisayildirim/jenkinsci-test"
+          },
+          "avatar": {
+            "href": "https://bytebucket.org/ravatar/%7Bbc079dea-b0a0-4bcb-88b5-9218d1c21e71%7D?ts=default"
+          }
+        },
+        "name": "jenkinsci-test",
+        "uuid": "{bc079dea-b0a0-4bcb-88b5-9218d1c21e71}"
+      }
+    },
+    "source": {
+      "branch": {
+        "name": "feature/v3.0.0"
+      },
+      "commit": {
+        "hash": "a5188bdd3d28",
+        "links": {
+          "self": {
+            "href": "https://api.bitbucket.org/2.0/repositories/yasinisayildirim/jenkinsci-test/commit/a5188bdd3d28"
+          },
+          "html": {
+            "href": "https://bitbucket.org/yasinisayildirim/jenkinsci-test/commits/a5188bdd3d28"
+          }
+        },
+        "type": "commit"
+      },
+      "repository": {
+        "type": "repository",
+        "full_name": "yasinisayildirim/jenkinsci-test",
+        "links": {
+          "self": {
+            "href": "https://api.bitbucket.org/2.0/repositories/yasinisayildirim/jenkinsci-test"
+          },
+          "html": {
+            "href": "https://bitbucket.org/yasinisayildirim/jenkinsci-test"
+          },
+          "avatar": {
+            "href": "https://bytebucket.org/ravatar/%7Bbc079dea-b0a0-4bcb-88b5-9218d1c21e71%7D?ts=default"
+          }
+        },
+        "name": "jenkinsci-test",
+        "uuid": "{bc079dea-b0a0-4bcb-88b5-9218d1c21e71}"
+      }
+    },
+    "reviewers": [],
+    "participants": [],
+    "links": {
+      "self": {
+        "href": "https://api.bitbucket.org/2.0/repositories/yasinisayildirim/jenkinsci-test/pullrequests/1"
+      },
+      "html": {
+        "href": "https://bitbucket.org/yasinisayildirim/jenkinsci-test/pull-requests/1"
+      },
+      "commits": {
+        "href": "https://api.bitbucket.org/2.0/repositories/yasinisayildirim/jenkinsci-test/pullrequests/1/commits"
+      },
+      "approve": {
+        "href": "https://api.bitbucket.org/2.0/repositories/yasinisayildirim/jenkinsci-test/pullrequests/1/approve"
+      },
+      "request-changes": {
+        "href": "https://api.bitbucket.org/2.0/repositories/yasinisayildirim/jenkinsci-test/pullrequests/1/request-changes"
+      },
+      "diff": {
+        "href": "https://api.bitbucket.org/2.0/repositories/yasinisayildirim/jenkinsci-test/diff/yasinisayildirim/jenkinsci-test:a5188bdd3d28%0D3fafee381de0?from_pullrequest_id=1&topic=true"
+      },
+      "diffstat": {
+        "href": "https://api.bitbucket.org/2.0/repositories/yasinisayildirim/jenkinsci-test/diffstat/yasinisayildirim/jenkinsci-test:a5188bdd3d28%0D3fafee381de0?from_pullrequest_id=1&topic=true"
+      },
+      "comments": {
+        "href": "https://api.bitbucket.org/2.0/repositories/yasinisayildirim/jenkinsci-test/pullrequests/1/comments"
+      },
+      "activity": {
+        "href": "https://api.bitbucket.org/2.0/repositories/yasinisayildirim/jenkinsci-test/pullrequests/1/activity"
+      },
+      "merge": {
+        "href": "https://api.bitbucket.org/2.0/repositories/yasinisayildirim/jenkinsci-test/pullrequests/1/merge"
+      },
+      "decline": {
+        "href": "https://api.bitbucket.org/2.0/repositories/yasinisayildirim/jenkinsci-test/pullrequests/1/decline"
+      },
+      "statuses": {
+        "href": "https://api.bitbucket.org/2.0/repositories/yasinisayildirim/jenkinsci-test/pullrequests/1/statuses"
+      }
+    },
+    "summary": {
+      "type": "rendered",
+      "raw": "",
+      "markup": "markdown",
+      "html": ""
+    }
+  }
+}

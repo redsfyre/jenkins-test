@@ -126,7 +126,7 @@ pipeline {
                     def GIT_TAG = env.TAG_NAME ?: ''
                     def PR_ID = env.PR_ID ?: ''
                     def GIT_URL = env.GIT_URL ?: env.REPO_URL ?: ''
-                    def DEPLOYED = env.DEPLOYED ?: 'false' :? ''
+                    def DEPLOYED = env.DEPLOYED ?: 'false' ?: ''
                     def PAYLOAD = """
 {
     "author":"$RELEASE_CREATOR",

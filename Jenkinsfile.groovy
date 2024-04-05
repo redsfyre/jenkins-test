@@ -111,10 +111,12 @@ pipeline {
     }
     post {
         success {
-            def POST_CONTENT = env.POST_CONTENT ?: '{ "status": "failed" }'
-            def PAYLOAD = "$POST_CONTENT"
-            echo "PAYLOAD: $PAYLOAD"
-            httpRequest consoleLogResponseBody: true, contentType: 'APPLICATION_JSON', customHeaders: [[maskValue: false, name: 'jenkins-event-type', value: 'workflow-completed']], httpMode: 'POST', ignoreSslErrors: true, requestBody: PAYLOAD, responseHandle: 'NONE', url: 'https://stale-ducks-speak.loca.lt/jenkins', wrapAsMultipart: false
+            script{
+                def POST_CONTENT = env.POST_CONTENT ?: '{ "status": "failed" }'
+                def PAYLOAD = "$POST_CONTENT"
+                echo "PAYLOAD: $PAYLOAD"
+                httpRequest consoleLogResponseBody: true, contentType: 'APPLICATION_JSON', customHeaders: [[maskValue: false, name: 'jenkins-event-type', value: 'workflow-completed']], httpMode: 'POST', ignoreSslErrors: true, requestBody: PAYLOAD, responseHandle: 'NONE', url: 'https://stale-ducks-speak.loca.lt/jenkins', wrapAsMultipart: false
+            }
         }
     }
 }

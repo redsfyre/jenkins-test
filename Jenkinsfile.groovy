@@ -2,56 +2,11 @@ pipeline {
     agent any
 
     triggers {
-        //GenericTrigger(
-        //    genericVariables: [
-        //        [key: 'REF_TYPE', value: '$.ref_type'],
-        //        [key: 'PR_ACTION', value: '$.action'],
-        //        [key: 'PR_OPENER', value: '$.sender.login'],
-        //        [key: 'PR_ID', value: '$.pull_request.number'],
-        //        [key: 'PR_TITLE', value: '$.pull_request.title'],
-        //        [key: 'PR_BODY', value: '$.pull_request.body'],
-        //        [key: 'PR_MERGE_COMMIT_SHA', value: '$.pull_request.merge_commit_sha'],
-        //        [key: 'PR_FROM_SHA', value: '$.pull_request.base.sha'],
-        //        [key: 'PR_FROM_REF', value: '$.pull_request.base.ref'],
-        //        [key: 'PR_TO_SHA', value: '$.pull_request.head.sha'],
-        //        [key: 'PR_TO_REF', value: '$.pull_request.head.ref'],
-        //        [key: 'TAG_NAME', value: '$.ref'],
-        //        [key: 'TAG_CREATOR', value: '$.sender.login'],
-        //        [key: 'TAG_BRANCH', value: '$.master_branch'],
-        //        [key: 'REPO_URL', value: '$.repository.clone_url']
-        //    ],
-        //    causeString: '#$PR_ID $PR_ACTION by $PR_OPENER',
-        //    token: 'abc123',
-        //    tokenCredentialId: '',
-        //    printContributedVariables: true,
-        //    printPostContent: false,
-        //    silentResponse: false,
-        //    shouldNotFlatten: false,
-        //    regexpFilterText: '$REF_TYPE',
-        //    regexpFilterExpression: '^(?!branch$)'
-        //)
-
         GenericTrigger(
             genericVariables: [
                 [key: 'POST_CONTENT', value: '$']
 
-                //[key: 'REF_TYPE', value: '$.object_kind'],
-                //[key: 'PR_ACTION', value: '$.object_attributes.state'],
-                //[key: 'PR_OPENER', value: '$.user.username'],
-                //[key: 'PR_ID', value: '$.object_attributes.iid'],
-                //[key: 'PR_TITLE', value: '$.object_attributes.title'],
-                //[key: 'PR_BODY', value: '$.object_attributes.description'],
-                //[key: 'PR_MERGE_COMMIT_SHA', value: '$.object_attributes.merge_commit_sha'],
-                //[key: 'PR_FROM_SHA', value: '$.object_attributes.source.sha'],
-                //[key: 'PR_FROM_REF', value: '$.object_attributes.source.branch'],
-                //[key: 'PR_TO_SHA', value: '$.object_attributes.target.sha'],
-                //[key: 'PR_TO_REF', value: '$.object_attributes.target.branch'],
-                //[key: 'TAG_NAME', value: '$.ref', regexpFilter: '^refs\\/tags\\/'],
-                //[key: 'TAG_CREATOR', value: '$.user_username'],
-                //[key: 'TAG_BRANCH', value: '$.repository.default_branch'],
-                //[key: 'REPO_URL', value: '$.project.http_url']
             ],
-            //causeString: '#$PR_ID $TAG_NAME $PR_ACTION $TAG_BRANCH by $PR_OPENER $TAG_CREATOR',
             causeString: '#$PR_ID $TAG_NAME $PR_ACTION $TAG_BRANCH by $PR_OPENER $TAG_CREATOR',
             token: 'abc123',
             tokenCredentialId: '',
@@ -60,14 +15,13 @@ pipeline {
             printPostContent: true,
             silentResponse: false,
             shouldNotFlatten: false,
-            regexpFilterText: '$REF_TYPE',
-            regexpFilterExpression: '^(?!branch$)'
+            regexpFilterText: '',
+            regexpFilterExpression: ''
         )
-
     }
 
     parameters {
-        string(name: 'DEPLOYED', defaultValue: 'true', description: 'Do you want to deploy?')
+        string(name: 'DEPLOY', defaultValue: 'true', description: 'Do you want to deploy?')
     }
 //    parameters {
         // Parameter that allows us to choose which branch to build
@@ -113,38 +67,53 @@ pipeline {
             }
         }
 
-        stage('env-vars') {
+        stage ('Deploy') {
             steps {
+                when {
+                    expression {
+                        return params.DEPLOY == 'true'
+                    }
+                }
+                echo "Deploying"
+            }
+        }
+
+        stage('create payload for manual build') {
+            steps {
+                when {
+                    allOf {
+                        expression {
+                            return currentBuild.rawBuild.getCause(hudson.model.Cause$UserIdCause) != null
+                        }
+                        expression {
+                            return params.DEPLOY == 'true'
+                    }
+                }
                 script {
-                    sh '''
-                        echo Variables from shell:
-                        printenv
-                    '''
-//                    def RELEASE_CREATOR = env.PR_OPENER ?: env.TAG_CREATOR ?: env.BUILD_USER_EMAIL ?: ''
-//                    def GIT_BRANCH = env.GIT_BRANCH ?: env.TAG_BRANCH ?: ''
-//                    def COMMIT_SHA = env.PR_MERGE_COMMIT_SHA ?: env.GIT_COMMIT ?: ''
-//                    def GIT_TAG = env.TAG_NAME ?: ''
-//                    def PR_ID = env.PR_ID ?: ''
-//                    def GIT_URL = env.GIT_URL ?: env.REPO_URL ?: ''
-//                    def DEPLOYED = env.DEPLOYED ?: 'false' ?: ''
-//                    def PAYLOAD = """
-//{
-//    "author":"$RELEASE_CREATOR",
-//    "branch":"$GIT_BRANCH",
-//    "hash":"$COMMIT_SHA",
-//    "tag":"$GIT_TAG",
-//    "pull_request":"$PR_ID",
-//    "url":"$GIT_URL",
-//    "published":"$DEPLOYED"
-//}
-//                    """
-                    def POST_CONTENT = env.POST_CONTENT ?: ''
-                    def PAYLOAD = "$POST_CONTENT"
+                    def GIT_TAG = env.GIT_TAG ?: ''
+                    def PULL_REQUEST = env.PR_ID ?: ''
+                    def PAYLOAD = """
+"author":"$BUILD_USER_ID",
+"branch":"$GIT_BRANCH",
+"hash":"$GIT_COMMIT",
+"tag":"$GIT_TAG",
+"pull_request":"$PR_ID",
+"url":"$GIT_URL",
+"published":"$DEPLOY"
+                    """
                     echo "PAYLOAD: $PAYLOAD"
                     httpRequest consoleLogResponseBody: true, contentType: 'APPLICATION_JSON', customHeaders: [[maskValue: false, name: 'jenkins-event-type', value: 'workflow-completed']], httpMode: 'POST', ignoreSslErrors: true, requestBody: PAYLOAD, responseHandle: 'NONE', url: 'https://stale-ducks-speak.loca.lt/jenkins', wrapAsMultipart: false
                     //sh "cat payload.json"
                 }
             }
+        }
+    }
+    post {
+        success {
+            def POST_CONTENT = env.POST_CONTENT ?: '{ "status": "failed" }'
+            def PAYLOAD = "$POST_CONTENT"
+            echo "PAYLOAD: $PAYLOAD"
+            httpRequest consoleLogResponseBody: true, contentType: 'APPLICATION_JSON', customHeaders: [[maskValue: false, name: 'jenkins-event-type', value: 'workflow-completed']], httpMode: 'POST', ignoreSslErrors: true, requestBody: PAYLOAD, responseHandle: 'NONE', url: 'https://stale-ducks-speak.loca.lt/jenkins', wrapAsMultipart: false
         }
     }
 }

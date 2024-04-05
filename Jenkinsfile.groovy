@@ -7,7 +7,7 @@ pipeline {
                 [key: 'POST_CONTENT', value: '$']
 
             ],
-            causeString: '#$PR_ID $TAG_NAME $PR_ACTION $TAG_BRANCH by $PR_OPENER $TAG_CREATOR',
+            causeString: '',
             token: 'abc123',
             tokenCredentialId: '',
             overrideQuietPeriod: true,
@@ -98,7 +98,7 @@ pipeline {
 "branch":"$GIT_BRANCH",
 "hash":"$GIT_COMMIT",
 "tag":"$GIT_TAG",
-"pull_request":"$PR_ID",
+"pull_request":"$PULL_REQUEST",
 "url":"$GIT_URL",
 "published":"$DEPLOY"
                     """

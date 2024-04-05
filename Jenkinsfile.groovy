@@ -79,17 +79,17 @@ pipeline {
         }
 
         stage('create payload for manual build') {
-            steps {
-                when {
-                    allOf {
-                        expression {
-                            return currentBuild.rawBuild.getCause(hudson.model.Cause$UserIdCause) != null
-                        }
-                        expression {
-                            return params.DEPLOY == 'true'
-                        }
+            when {
+                allOf {
+                    expression {
+                        return currentBuild.rawBuild.getCause(hudson.model.Cause$UserIdCause) != null
+                    }
+                    expression {
+                        return params.DEPLOY == 'true'
                     }
                 }
+            }
+            steps {
                 script {
                     def GIT_TAG = env.GIT_TAG ?: ''
                     def PULL_REQUEST = env.PR_ID ?: ''

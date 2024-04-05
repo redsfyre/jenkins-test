@@ -120,29 +120,27 @@ pipeline {
                         echo Variables from shell:
                         printenv
                     '''
-                    def RELEASE_CREATOR = env.PR_OPENER ?: env.TAG_CREATOR ?: env.BUILD_USER_EMAIL ?: ''
-                    def GIT_BRANCH = env.GIT_BRANCH ?: env.TAG_BRANCH ?: ''
-                    def COMMIT_SHA = env.PR_MERGE_COMMIT_SHA ?: env.GIT_COMMIT ?: ''
-                    def GIT_TAG = env.TAG_NAME ?: ''
-                    def PR_ID = env.PR_ID ?: ''
-                    def GIT_URL = env.GIT_URL ?: env.REPO_URL ?: ''
-                    def DEPLOYED = env.DEPLOYED ?: 'false' ?: ''
-                    def PAYLOAD = """
-{
-    "author":"$RELEASE_CREATOR",
-    "branch":"$GIT_BRANCH",
-    "hash":"$COMMIT_SHA",
-    "tag":"$GIT_TAG",
-    "pull_request":"$PR_ID",
-    "url":"$GIT_URL",
-    "published":"$DEPLOYED"
-}
-                    """
-                    def NEW_PAYLOAD = """
-$POST_CONTENT
-                    """
-                    echo "PAYLOAD: $POST_CONTENT"
-                    httpRequest consoleLogResponseBody: true, contentType: 'APPLICATION_JSON', customHeaders: [[maskValue: false, name: 'jenkins-event-type', value: 'workflow-completed']], httpMode: 'POST', ignoreSslErrors: true, requestBody: NEW_PAYLOAD, responseHandle: 'NONE', url: 'https://stale-ducks-speak.loca.lt/jenkins', wrapAsMultipart: false
+//                    def RELEASE_CREATOR = env.PR_OPENER ?: env.TAG_CREATOR ?: env.BUILD_USER_EMAIL ?: ''
+//                    def GIT_BRANCH = env.GIT_BRANCH ?: env.TAG_BRANCH ?: ''
+//                    def COMMIT_SHA = env.PR_MERGE_COMMIT_SHA ?: env.GIT_COMMIT ?: ''
+//                    def GIT_TAG = env.TAG_NAME ?: ''
+//                    def PR_ID = env.PR_ID ?: ''
+//                    def GIT_URL = env.GIT_URL ?: env.REPO_URL ?: ''
+//                    def DEPLOYED = env.DEPLOYED ?: 'false' ?: ''
+//                    def PAYLOAD = """
+//{
+//    "author":"$RELEASE_CREATOR",
+//    "branch":"$GIT_BRANCH",
+//    "hash":"$COMMIT_SHA",
+//    "tag":"$GIT_TAG",
+//    "pull_request":"$PR_ID",
+//    "url":"$GIT_URL",
+//    "published":"$DEPLOYED"
+//}
+//                    """
+                    def PAYLOAD = "$POST_CONTENT"
+                    echo "PAYLOAD: $PAYLOAD"
+                    httpRequest consoleLogResponseBody: true, contentType: 'APPLICATION_JSON', customHeaders: [[maskValue: false, name: 'jenkins-event-type', value: 'workflow-completed']], httpMode: 'POST', ignoreSslErrors: true, requestBody: PAYLOAD, responseHandle: 'NONE', url: 'https://stale-ducks-speak.loca.lt/jenkins', wrapAsMultipart: false
                     //sh "cat payload.json"
                 }
             }
